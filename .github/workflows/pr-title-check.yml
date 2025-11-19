@@ -9,5 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check PR Title
-        run: echo "PR Title: ${{ github.event.pull_request.title }}"
+        run: echo "PR Title:${{ github.event.pull_request.title }}"
   
