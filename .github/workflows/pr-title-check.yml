@@ -1,0 +1,13 @@
+name: PR Title validation
+
+on:
+  pull_request:
+    types:[opened, edited, reopened, synchronize]
+
+jobs:
+  pr-title-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR Title
+        run: echo "PR Title: ${{ github.event.pull_request.title }}"
+  
