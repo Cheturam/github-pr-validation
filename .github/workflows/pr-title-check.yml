@@ -9,5 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check PR Title
-        run: echo "PR Title:${{ github.event.pull_request.title }}"
-  
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+          echo "Checking PR title: $TITLE"
+
+          # Regex : mush start with [PR-<digits>] followed by a space and description
+          if [[ ! "$TITLE" =~ ^\[PR-[0-9]+\]\ .+ ]]; then
+            echo "❌ Invalid PR title format."
+            echo "Expected format: [PR-1234] description"
+            exit 1
+          fi
+
+          echo "✅ PR title format is valid."
